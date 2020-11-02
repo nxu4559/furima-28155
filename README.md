@@ -27,79 +27,71 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
-| birthday | string | null: false |
-| user_id  | string | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| birthday           | date   | null: false |
+| encrypted_password | string | null: false |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| first_name_kana    | string | null: false |
+| last_name_kana     | string | null: false |
 
 ### Association
 
-- has_many :items, comments
-- has_one  :purchase, address
+- has_many :items, comments, purchases
 
 ## items テーブル
 
-| Column         | Type       | Options                       |
-| -------------- | ---------- | ----------------------------- |
-| name           | string     | null: false                   |
-| description    | text       | null: false                   |
-| category       | integer    | null: false                   |
-| condition      | integer    | null: false                   |
-| postage_prayer | integer    | null: false                   |
-| prefecture     | integer    | null: false                   |
-| days           | integer    | null: false                   |
-| price          | integer    | null: false                   |
-| user_id        | references | null: false, foreign_key: true|
+| Column            | Type       | Options                       |
+| ----------------- | ---------- | ----------------------------- |
+| name              | string     | null: false                   |
+| description       | text       | null: false                   |
+| category          | integer    | null: false                   |
+| condition_id      | integer    | null: false                   |
+| postage_prayer_id | integer    | null: false                   |
+| prefecture_id     | integer    | null: false                   |
+| days              | integer    | null: false                   |
+| price             | integer    | null: false                   |
+| user              | references | null: false, foreign_key: true|
 
 ### Association
 
-- has_many   :product_images
-- belongs_to :users
-- belongs_to :comments
-- belongs_to_active_hash :condition,postage,prefecture
+- belongs_to :user
+- has_many :comments
+- belongs_to_active_hash :condition_id,postage_id,prefecture_id
 
 ## address テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | post_code     | integer    | null: false                    |
-| prefecture    | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
-| house_number  | string     |                                |
+| house_number  | string     | NOTNULL                        |
 | building_name | string     |                                |
-| phone_number  | string     |                                |
-| user_id       | references | null: false, foreign_key: true |
+| phone_number  | string     | NOTNULL                        |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to_active_hash :prefecture
+- belongs_to :user
+- belongs_to_active_hash :prefecture_id
+- has_one :purchases
 
-## product_image テーブル
+## purchases テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| image      | string     | null: false                    |
-| product_id | string     | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :items
-
-## purchase テーブル
-
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| user_id     | references | null: false, foreign_key: true |
-| customer_id | string     | null: false,                   |
-| card_id     | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 ## comments テーブル
 
@@ -112,6 +104,6 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
 
