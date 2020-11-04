@@ -40,7 +40,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :items, comments
+- has_many :items
+- has_many :comments
 - has_many :purchases
 
 ## items テーブル
@@ -59,7 +60,6 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :user
 - has_many :comments
 - belongs_to_active_hash :condition_id,postage_id,prefecture_id,category_id,days_id
 - has_one :purchase
@@ -101,7 +101,7 @@ Things you may want to cover:
 | ---------- | ---------- | ------------------------------ |
 | user       | references | null: false, foreign_key: true |
 | item       | references | null: false, foreign_key: true |
-| comment    | text       |                                |
+| comment    | text       | null: false                    |
 
 
 ### Association
