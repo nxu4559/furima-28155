@@ -40,7 +40,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :items, comments, purchases
+- has_many :items, comments
+- has_many :purchases
 
 ## items テーブル
 
@@ -48,11 +49,11 @@ Things you may want to cover:
 | ----------------- | ---------- | ----------------------------- |
 | name              | string     | null: false                   |
 | description       | text       | null: false                   |
-| category          | integer    | null: false                   |
+| category_id       | integer    | null: false                   |
 | condition_id      | integer    | null: false                   |
 | postage_prayer_id | integer    | null: false                   |
 | prefecture_id     | integer    | null: false                   |
-| days              | integer    | null: false                   |
+| days_id           | integer    | null: false                   |
 | price             | integer    | null: false                   |
 | user              | references | null: false, foreign_key: true|
 
@@ -60,25 +61,26 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_many :comments
-- belongs_to_active_hash :condition_id,postage_id,prefecture_id
+- belongs_to_active_hash :condition_id,postage_id,prefecture_id,category_id,days_id
+- has_one :purchase
 
 ## address テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| post_code     | integer    | null: false                    |
+| post_code     | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | house_number  | string     | NOTNULL                        |
 | building_name | string     |                                |
 | phone_number  | string     | NOTNULL                        |
-| user          | references | null: false, foreign_key: true |
+| purchase      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to_active_hash :prefecture_id
-- has_one :purchases
+- belongs_to :purchase
 
 ## purchases テーブル
 
