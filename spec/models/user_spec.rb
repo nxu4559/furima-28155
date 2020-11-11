@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
           it 'emailがない場合は登録できないこと' do
             @user.email = ''
             @user.valid?
-            expect(@user.errors.full_messages).to include ("Email can't be blank")
+            expect(@user.errors.full_messages).to include("Email can't be blank")
           end
 
           it 'emailが一意性であること' do
@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
           it 'emailに@がないと登録できない' do
             @user.email = 'aaagmail.com'
             @user.valid?
-            expect(@user.errors.full_messages).to include("Email is invalid")
+            expect(@user.errors.full_messages).to include('Email is invalid')
           end
 
           it 'passwordが空だと登録できない' do
@@ -64,8 +64,8 @@ RSpec.describe User, type: :model do
           end
 
           it 'passwordが存在してもpassword_confirmationが空でないと登録できない' do
-            @user.password = "123456"
-            @user.password_confirmation = "1234567"
+            @user.password = '123456'
+            @user.password_confirmation = '1234567'
             @user.valid?
             expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
           end
@@ -81,7 +81,7 @@ RSpec.describe User, type: :model do
             @user.valid?
             expect(@user.errors.full_messages).to include('Last name は全角文字で設定してください')
           end
-          
+
           it 'first_nameは空では登録できない' do
             @user.first_name = ''
             @user.valid?
@@ -111,7 +111,7 @@ RSpec.describe User, type: :model do
             @user.valid?
             expect(@user.errors.full_messages).to include('Last name kana は全角カタカナで設定してください')
           end
-          
+
           it 'first_name_kanaは空では登録できない' do
             @user.first_name_kana = ''
             @user.valid?
@@ -136,7 +136,7 @@ RSpec.describe User, type: :model do
             expect(@user.errors.full_messages).to include("Birthday can't be blank")
           end
         end
-        end
       end
     end
   end
+end
