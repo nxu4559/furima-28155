@@ -74,7 +74,15 @@ RSpec.describe User, type: :model do
             @user.valid?
             expect(@user.errors.full_messages).to include("Last name can't be blank")
           end
+<<<<<<< Updated upstream
           
+=======
+<<<<<<< HEAD
+
+=======
+          
+>>>>>>> 1829823e5fd8579eda90adeb33d4bf91fdd5b381
+>>>>>>> Stashed changes
           it 'last_nameに半角英数字が存在すると登録できない' do
             @user.last_name = 'abc123'
             @user.valid?
@@ -138,4 +146,12 @@ RSpec.describe User, type: :model do
       end
     end
   end
+<<<<<<< Updated upstream
 end
+=======
+<<<<<<< HEAD
+end
+=======
+end
+>>>>>>> 1829823e5fd8579eda90adeb33d4bf91fdd5b381
+>>>>>>> Stashed changes
