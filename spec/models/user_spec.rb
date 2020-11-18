@@ -19,13 +19,13 @@ RSpec.describe User, type: :model do
 
         context '新規登録がうまくいかないとき' do
           it 'nicknameがない場合は登録できないこと' do
-            @user.nickname = ''
+            @user.nickname = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Nickname can't be blank")
           end
 
           it 'emailがない場合は登録できないこと' do
-            @user.email = ''
+            @user.email = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Email can't be blank")
           end
@@ -70,19 +70,11 @@ RSpec.describe User, type: :model do
           end
 
           it 'last_nameは空では登録できない' do
-            @user.last_name = ''
+            @user.last_name = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Last name can't be blank")
           end
-<<<<<<< Updated upstream
-          
-=======
-<<<<<<< HEAD
 
-=======
-          
->>>>>>> 1829823e5fd8579eda90adeb33d4bf91fdd5b381
->>>>>>> Stashed changes
           it 'last_nameに半角英数字が存在すると登録できない' do
             @user.last_name = 'abc123'
             @user.valid?
@@ -102,7 +94,7 @@ RSpec.describe User, type: :model do
           end
 
           it 'last_name_kanaは空では登録できない' do
-            @user.last_name_kana = ''
+            @user.last_name_kana = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Last name kana can't be blank")
           end
@@ -120,7 +112,7 @@ RSpec.describe User, type: :model do
           end
 
           it 'first_name_kanaは空では登録できない' do
-            @user.first_name_kana = ''
+            @user.first_name_kana = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("First name kana can't be blank")
           end
@@ -138,7 +130,7 @@ RSpec.describe User, type: :model do
           end
 
           it 'birthdayが空だと登録できない' do
-            @user.birthday = ''
+            @user.birthday = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Birthday can't be blank")
           end
@@ -146,12 +138,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-<<<<<<< Updated upstream
 end
-=======
-<<<<<<< HEAD
-end
-=======
-end
->>>>>>> 1829823e5fd8579eda90adeb33d4bf91fdd5b381
->>>>>>> Stashed changes
