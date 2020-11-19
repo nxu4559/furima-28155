@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
           end
 
           it 'categoryは１を登録したら保存できない' do
-            @item.category_id = '1'
+            @item.category_id = 1
             @item.valid?
             expect(@item.errors.full_messages).to include('Category must be other than 1')
           end
@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
           end
 
           it 'conditionは１を登録したら保存できない' do
-            @item.condition_id = '1'
+            @item.condition_id = 1
             @item.valid?
             expect(@item.errors.full_messages).to include('Condition must be other than 1')
           end
@@ -61,7 +61,7 @@ RSpec.describe Item, type: :model do
           end
 
           it 'postage_prayerは１を登録したら保存できない' do
-            @item.postage_prayer_id = '1'
+            @item.postage_prayer_id = 1
             @item.valid?
             expect(@item.errors.full_messages).to include('Postage prayer must be other than 1')
           end
@@ -73,7 +73,7 @@ RSpec.describe Item, type: :model do
           end
 
           it 'prefectureは１を登録したら保存できない' do
-            @item.prefecture_id = '1'
+            @item.prefecture_id = 1
             @item.valid?
             expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
           end
@@ -85,7 +85,7 @@ RSpec.describe Item, type: :model do
           end
 
           it 'daysは１を登録したら保存できない' do
-            @item.days_id = '1'
+            @item.days_id = 1
             @item.valid?
             expect(@item.errors.full_messages).to include('Days must be other than 1')
           end
