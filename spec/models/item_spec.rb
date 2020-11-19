@@ -30,10 +30,22 @@ RSpec.describe Item, type: :model do
             expect(@item.errors.full_messages).to include("Description can't be blank")
           end
 
+          it 'categoryが空だと保存できない' do
+            @item.category_id = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Category can't be blank")
+          end
+
           it 'categoryは１を登録したら保存できない' do
             @item.category_id = '1'
             @item.valid?
             expect(@item.errors.full_messages).to include('Category must be other than 1')
+          end
+
+          it 'conditionが空だと保存できない' do
+            @item.condition_id = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Condition can't be blank")
           end
 
           it 'conditionは１を登録したら保存できない' do
@@ -42,16 +54,34 @@ RSpec.describe Item, type: :model do
             expect(@item.errors.full_messages).to include('Condition must be other than 1')
           end
 
+          it 'postage_prayerが空だと保存できない' do
+            @item.postage_prayer_id = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Postage prayer can't be blank")
+          end
+
           it 'postage_prayerは１を登録したら保存できない' do
             @item.postage_prayer_id = '1'
             @item.valid?
             expect(@item.errors.full_messages).to include('Postage prayer must be other than 1')
           end
 
+          it 'Prefectureが空だと保存できない' do
+            @item.prefecture_id = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+          end
+
           it 'prefectureは１を登録したら保存できない' do
             @item.prefecture_id = '1'
             @item.valid?
             expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
+          end
+
+          it 'daysが空だと保存できない' do
+            @item.days_id = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Days can't be blank")
           end
 
           it 'daysは１を登録したら保存できない' do
@@ -67,13 +97,13 @@ RSpec.describe Item, type: :model do
           end
 
           it 'priceが300円以上でないと保存できない' do
-            @item.price = '299'
+            @item.price = 299
             @item.valid?
             expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
           end
 
           it 'priceは9,999,999以下でないと保存できない' do
-            @item.price = '10000000'
+            @item.price = 10_000_000
             @item.valid?
             expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
           end
