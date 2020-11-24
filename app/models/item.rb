@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :postage_prayer
   belongs_to :prefecture
-  belongs_to :day
+  belongs_to :days
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
