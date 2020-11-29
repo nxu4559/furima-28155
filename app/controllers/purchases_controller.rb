@@ -21,10 +21,18 @@ class PurchasesController < ApplicationController
     end
   end
 
+
+
   private
 
   def purchase_params
     params.require(:purchase_address).permit(:purchase_id, :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def move_to_index
+    if @item.purchase != nil || current_user.id == @item.user.id
+      redirect_to root_path
+    end
   end
 
   def get_item
