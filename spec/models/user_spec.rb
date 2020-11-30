@@ -18,13 +18,13 @@ RSpec.describe User, type: :model do
         end
 
         context '新規登録がうまくいかないとき' do
-          it 'nicknameがない場合は登録できないこと' do
+          it 'nicknameがない場合は登録できない' do
             @user.nickname = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Nickname can't be blank")
           end
 
-          it 'emailがない場合は登録できないこと' do
+          it 'emailがない場合は登録できない' do
             @user.email = nil
             @user.valid?
             expect(@user.errors.full_messages).to include("Email can't be blank")
